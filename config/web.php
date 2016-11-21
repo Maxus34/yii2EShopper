@@ -6,6 +6,7 @@ $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
+    'language' => 'ru-Ru',
 	'components' => [
         'request' => [
 			'baseUrl' => '',
