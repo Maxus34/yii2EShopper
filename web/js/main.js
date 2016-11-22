@@ -2,6 +2,11 @@
 
  $('#sl2').slider();
 
+	//Создание выпадающего меню
+	$('#catalog').dcAccordion({
+		'speed' : 200,
+	});
+
 	var RGBChange = function() {
 	  $('#RGB').css('background', 'rgb('+r.getValue()+','+g.getValue()+','+b.getValue()+')')
 	};	
