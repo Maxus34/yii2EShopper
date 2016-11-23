@@ -7,9 +7,17 @@
  */
 
 namespace app\controllers;
-use yii\base\Controller;
+use app\models\Category;
+use app\models\Product;
+use Yii;
 
-class CategoryController extends Controller
+class CategoryController extends AppController
 {
+    public function actionIndex() {
+        $this->view->title="Home";
+        $products_hit = Product::find()->where(['=', 'hit', '1'])->limit(6)->all();
+
+        return $this->render('index', compact('products_hit'));
+    }
 
 }

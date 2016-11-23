@@ -890,6 +890,9 @@ h2.title {
   font-size: 14px;
   font-weight: 400;
   color: #696763;
+  min-height:38px;
+  max-height:38px;
+  overflow: hidden;
 }
 
 .productinfo img{
@@ -2528,5 +2531,3 @@ h2.title {
 .contact-info .social-networks ul li a:hover{
   color: #FE980F;
 }
-
-
