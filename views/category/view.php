@@ -1,4 +1,7 @@
 <?php
+    //$pages;
+    //$products;
+    //$category;
     use yii\helpers\Html;
 ?>
 
@@ -14,12 +17,12 @@
         <div class="row">
             <div class="col-sm-3">
                 <div class="left-sidebar">
-                    <div class="category">
+                    <div class="category"><!--/Categories-->
                         <h2>Category</h2>
                         <ul class="catalog category-products" id = 'catalog'>
                             <?= \app\components\MenuWidget:: widget(['tpl' => 'menu'])?>
                         </ul>
-                    </div>
+                    </div><!--/Categories-->
 
                     <div class="brands_products"><!--brands_products-->
                         <h2>Brands</h2>
@@ -47,7 +50,6 @@
                     <div class="shipping text-center"><!--shipping-->
                         <img src="/images/home/shipping.jpg" alt="" />
                     </div><!--/shipping-->
-
                 </div>
             </div>
 
@@ -56,7 +58,6 @@
                     <h2 class="title text-center"><?= $category->name ?> PRODUCTS</h2>
                     <?php if(!empty($products)): ?>
                         <?php foreach ($products as $product): ?>
-
                             <div class="col-sm-4">
                                 <div class="product-image-wrapper">
                                     <div class="single-products">
@@ -81,20 +82,19 @@
                                     </div>
                                 </div>
                             </div>
-
                         <?php endforeach; ?>
-
-                        <?php else: ?>
+                            <div class="clearfix"></div>
+                            <div class="text-center"> <!--Pagination-->
+                                <?php
+                                    echo \yii\widgets\LinkPager::widget([
+                                        'pagination' => $pages,
+                                    ]);
+                                ?>
+                            </div> <!--Pagination-->
+                    <?php else: ?>
                         <h2 class="text-center" style="font-family: 'Roboto', sans-serif;">В данной категории пока нет товаров</h2>
                     <?php endif; ?>
-                    <div class="clearfix"></div>
-                    <ul class="pagination">
-                        <li class="active"><a href="">1</a></li>
-                        <li><a href="">2</a></li>
-                        <li><a href="">3</a></li>
-                        <li><a href="">&raquo;</a></li>
-                    </ul>
-                </div><!--features_items-->
+                </div>
             </div>
         </div>
     </div>
