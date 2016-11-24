@@ -87,7 +87,7 @@
                         <?php else: ?>
                         <h2 class="text-center" style="font-family: 'Roboto', sans-serif;">В данной категории пока нет товаров</h2>
                     <?php endif; ?>
-                    <div class="clearfix"></div> 
+                    <div class="clearfix"></div>
                     <ul class="pagination">
                         <li class="active"><a href="">1</a></li>
                         <li><a href="">2</a></li>

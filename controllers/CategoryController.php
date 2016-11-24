@@ -14,7 +14,7 @@ use Yii;
 class CategoryController extends AppController
 {
     public function actionIndex() {
-        $this->view->title="Home";
+        $this->setMeta('E_SHOPPER');
         $products_hit = Product::find()->where(['=', 'hit', '1'])->limit(6)->all();
         return $this->render('index', compact('products_hit'));
     }
@@ -23,6 +23,9 @@ class CategoryController extends AppController
         $id = Yii::$app->request->get('id');
         $category = Category::findOne(['=', 'id', $id]);
         $products = Product::find()->where(['category_id' => $id])->all();
+
+        $this->setMeta('E_SHOPPER | ' . mb_convert_case($category->name, 0), $category->keywords, $category->description);
+
         return $this->render('view', compact('products', 'category'));
     }
 }
