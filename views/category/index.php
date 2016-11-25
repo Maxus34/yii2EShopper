@@ -123,7 +123,11 @@
                                         <div class="productinfo text-center">
                                             <?= Html::img("@web/images/products/{$product->img}", ['alt' => 'image not found']) ?>
                                             <h2>$<?= $product->price; ?></h2>
-                                            <p class="product-name"><?= $product->name; ?></p>
+                                            <p class="product-name">
+                                                <a href="<?=\yii\helpers\Url::to(['product/view', 'id' => $product->id]);?>">
+                                                    <?= $product->name; ?>
+                                                </a>
+                                            </p>
                                             <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                                         </div>
                                         <?php if ($product->new) : ?>
