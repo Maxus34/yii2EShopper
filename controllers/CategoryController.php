@@ -10,8 +10,8 @@ namespace app\controllers;
 use app\models\Category;
 use app\models\Product;
 use yii\data\Pagination;
+use yii\web\HttpException;
 use Yii;
-
 
 class CategoryController extends AppController
 {
@@ -24,6 +24,10 @@ class CategoryController extends AppController
     public function actionView() {
         $id = Yii::$app->request->get('id');
         $category = Category::findOne(['=', 'id', $id]);
+        if (empty($category)) {
+            throw new HttpException(404, "Такой категории не существует");
+        }
+
         $query = Product::find()->where(['category_id' => $id]);
 
         $pages = new Pagination([

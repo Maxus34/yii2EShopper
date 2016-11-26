@@ -6,22 +6,17 @@
 /* @var $exception Exception */
 
 use yii\helpers\Html;
-
-$this->title = $name;
+    $this->title = $name;
 ?>
-<div class="site-error">
-
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <div class="alert alert-danger">
-        <?= nl2br(Html::encode($message)) ?>
+<div class="site-error container">
+    <div class="container text-center">
+        <div class="logo-404">
+            <a href="<?= \yii\helpers\Url::home(); ?>"><?=Html::img('@web/images/home/logo.png', ['alt' => '']); ?></a>
+        </div>
+        <div class="content-404">
+            <h1><b>OPPS!&nbsp&nbsp</b><?= nl2br(Html::encode($message)) ?></h1>
+            <h2><a onclick="history.go(-1)">Go back</a></h2>
+            <?=Html::img('@web/images/404/404.png', ['alt' => '', 'class' => 'img-responsive']); ?>
+        </div>
     </div>
-
-    <p>
-        The above error occurred while the Web server was processing your request.
-    </p>
-    <p>
-        Please contact us if you think this is a server error. Thank you.
-    </p>
-
 </div>
