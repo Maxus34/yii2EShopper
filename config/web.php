@@ -45,9 +45,13 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
-                'category/<id:\d+>/page/<page:\d+>' => 'category/view',
                 'product/<id:\d+>' => 'product/view',
+
+                'category/<id:\d+>/page/<page:\d+>' => 'category/view',
                 'category/<id:\d+>' => 'category/view',
+
+                'search/page/<page:\d+>' => 'category/search',
+                'search' => 'category/search',
             ],
         ],
     ],

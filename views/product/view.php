@@ -102,7 +102,7 @@
                             <span>
 									<span>US $<?=$product->price?></span>
 									<label>Quantity:</label>
-									<input type="text" value="3" />
+									<input type="text" value="1" />
 									<button type="button" class="btn btn-fefault cart">
 										<i class="fa fa-shopping-cart"></i>
 										Add to cart
@@ -312,7 +312,7 @@
 
                 <div class="recommended_items"><!--recommended_items-->
                     <h2 class="title text-center">recommended items</h2>
-                    <!-- Widget for outputing carousel with recommended prudicts -->
+                    <!-- Widget for outputing carousel with recommended pruducts -->
                     <?= \app\components\RecommendedItemsCarousel:: widget(['products' => $products_hits ])?>
                 </div><!--/recommended_items-->
 
