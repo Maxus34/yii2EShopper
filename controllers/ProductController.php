@@ -16,8 +16,9 @@ class ProductController extends AppController
     public function actionView($id) {
         $id = Yii::$app->request->get('id');
         $product = Product::find()->where(['=', 'id', $id])->with('category')->limit(1)->all()[0];
+        $products_hits = Product::find()->where(['hit' => '1'])->limit(9)->all();
 
         $this->setMeta('E_SHOPPER | ' . mb_convert_case($product->name, 0), $product->keywords, $product->description);
-        return $this->render('view', compact('product'));
+        return $this->render('view', compact('product', 'products_hits'));
     }
 }
