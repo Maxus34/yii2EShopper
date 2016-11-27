@@ -7,6 +7,7 @@
  */
 
 namespace app\controllers;
+
 use app\models\Product;
 use app\models\Category;
 use app\models\Cart;
@@ -14,9 +15,12 @@ use Yii;
 
 class CartController extends AppController
 {
-   public function actionAdd($id){
+    public function actionAdd($id)
+    {
+        $this->layout=false;
+        
         $product = Product::findOne($id);
-        if(empty($product)){
+        if (empty($product)) {
             return false;
         }
 
@@ -26,9 +30,8 @@ class CartController extends AppController
         $cart = new Cart();
         $cart->addToCart($product);
 
-
-
-        $session->close();
-   }
+       //$session->close();
+        return $this->render('cart-model', compact('session'));
+    }
 
 }
