@@ -1,17 +1,32 @@
+//Корзина
 function showCart(cart){
     $('#cart .modal-body').html(cart);
     $('#cart').modal();
 }
+
 function clearCart(){
     $.ajax({
         url: '/cart/clear',
         type: 'GET',
         success: function(res){
-            if(!res) alert("Error");
+            if(!res) alert("Error clear-cart");
             showCart(res);
         }
     })
 }
+
+function getCart(){
+    $.ajax({
+        url: '/cart/',
+        type: 'GET',
+        success: function(res){
+            if(!res) alert("Error clear-cart");
+            showCart(res);
+        }
+    });
+    return false;
+}
+
 $('.add-to-cart').on('click', function(e){
     e.preventDefault();
     var id = $(this).data('id');
@@ -24,8 +39,24 @@ $('.add-to-cart').on('click', function(e){
             showCart(res);
         },
         error : function () {
-            alert ('error');
+            alert ('error add-to-cart' + e);
         }
+    })
+});
+
+$('#cart .modal-body').on('click', '.del-item', function() {
+    let id = $(this).data('id');
+    $.ajax({
+        url: '/cart/del-item',
+        data: {id: id},
+        type: 'GET',
+        success: function (res) {
+            showCart(res);
+        },
+        error: function (e) {
+            alert ('error del-item' + e);
+        }
+
     })
 });
 

@@ -28,4 +28,12 @@ class Cart extends Model
         $_SESSION['cart.qty'] = isset($_SESSION['cart.qty']) ? $_SESSION['cart.qty'] + $qty : $qty;
         $_SESSION['cart.sum'] = isset($_SESSION['cart.sum']) ? $_SESSION['cart.sum'] + $qty * $product->price : $qty * $product->price;
     }
+
+    public function deleteItemAndUpdateCart($id){
+        if (!isset($_SESSION['cart'][$id])) return false;
+
+        $_SESSION['cart.qty'] -=  $_SESSION['cart'][$id]['qty'];
+        $_SESSION['cart.sum'] -= ($_SESSION['cart'][$id]['qty'] * $_SESSION['cart'][$id]['price']);
+        unset($_SESSION['cart'][$id]);
+    }
 }

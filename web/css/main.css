@@ -1305,10 +1305,10 @@ h2.title {
 }
 
 td.cart-product img{
-  height:50%;
-  width:60%;
-  min-height:100px;
-  min-width:100px;
+  max-height:70px;
+  width:70px;
+  min-height:50px;
+  min-width:50px;
 }
 
 .modal-body{
@@ -2540,4 +2540,9 @@ td.cart-product img{
 
 .contact-info .social-networks ul li a:hover{
   color: #FE980F;
+}
+
+.del-item{
+  color: Red;
+  cursor: pointer;
 }
