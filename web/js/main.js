@@ -10,9 +10,26 @@
 	var RGBChange = function() {
 	  $('#RGB').css('background', 'rgb('+r.getValue()+','+g.getValue()+','+b.getValue()+')')
 	};	
-		
-/*scroll to top*/
 
+	$('.add-to-cart').on('click', function(e){
+		e.preventDefault();
+		var id = $(this).data('id');
+		$.ajax({
+			url : '/cart/add',
+			data : {id: id},
+			type : 'GET',
+			success : function (res) {
+				if (!res) alert ('Error!');
+				console.log(res);
+				//showCart();
+			},
+			error : function () {
+				alert ('error');
+			}
+		})
+	});
+
+/*scroll to top*/
 $(document).ready(function(){
 	$(function () {
 		$.scrollUp({
