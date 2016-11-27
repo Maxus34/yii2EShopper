@@ -1304,6 +1304,16 @@ h2.title {
   margin-left: 20px;
 }
 
+td.cart-product img{
+  height:50%;
+  width:60%;
+  min-height:100px;
+  min-width:100px;
+}
+
+.modal-body{
+  padding:0px;
+}
 
 .shop-details-tab {
   border: 1px solid #F7F7F0;
@@ -1573,7 +1583,7 @@ h2.title {
 
 #cart_items .cart_info {
   border: 1px solid #E6E4DF;
-  margin-bottom: 50px
+  margin-bottom: 0px
 }
 
 

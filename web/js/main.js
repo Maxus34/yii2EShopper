@@ -1,33 +1,45 @@
-/*price range*/
+function showCart(cart){
+    $('#cart .modal-body').html(cart);
+    $('#cart').modal();
+}
+function clearCart(){
+    $.ajax({
+        url: '/cart/clear',
+        type: 'GET',
+        success: function(res){
+            if(!res) alert("Error");
+            showCart(res);
+        }
+    })
+}
+$('.add-to-cart').on('click', function(e){
+    e.preventDefault();
+    var id = $(this).data('id');
+    $.ajax({
+        url : '/cart/add',
+        data : {id: id},
+        type : 'GET',
+        success : function (res) {
+            if (!res) alert ('Error!');
+            showCart(res);
+        },
+        error : function () {
+            alert ('error');
+        }
+    })
+});
 
- $('#sl2').slider();
+//Создание выпадающего меню
+$('#catalog').dcAccordion({
+    'speed' : 200,
+});
 
-	//Создание выпадающего меню
-	$('#catalog').dcAccordion({
-		'speed' : 200,
-	});
+//--------------------------------------------
+$('#sl2').slider();
 
-	var RGBChange = function() {
-	  $('#RGB').css('background', 'rgb('+r.getValue()+','+g.getValue()+','+b.getValue()+')')
-	};	
-
-	$('.add-to-cart').on('click', function(e){
-		e.preventDefault();
-		var id = $(this).data('id');
-		$.ajax({
-			url : '/cart/add',
-			data : {id: id},
-			type : 'GET',
-			success : function (res) {
-				if (!res) alert ('Error!');
-				console.log(res);
-				//showCart();
-			},
-			error : function () {
-				alert ('error');
-			}
-		})
-	});
+var RGBChange = function() {
+    $('#RGB').css('background', 'rgb('+r.getValue()+','+g.getValue()+','+b.getValue()+')')
+};
 
 /*scroll to top*/
 $(document).ready(function(){

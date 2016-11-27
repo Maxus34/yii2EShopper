@@ -3,6 +3,7 @@
     //$products;
     //$category;
     use yii\helpers\Html;
+    use yii\helpers\Url;
 ?>
 
 
@@ -69,7 +70,9 @@
                                                     <?= $product->name; ?>
                                                 </a>
                                             </p>
-                                            <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                            <a href="#" class="btn btn-default add-to-cart" data-id="<?= $product->id ?>">
+                                                <i class="fa fa-shopping-cart"></i>Add to cart
+                                            </a>
                                         </div>
                                         <?php if ($product->new) : ?>
                                             <?= Html::img("@web/images/home/new.png", ['class' => 'new']); ?>
