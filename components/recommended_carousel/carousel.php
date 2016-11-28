@@ -16,7 +16,7 @@
                             <p>
                                 <a href="<?= \yii\helpers\Url::to(['product/view', 'id' => $product->id]) ?>"> <?= $product->name ?> </a>
                             </p>
-                            <button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
+                            <button type="button" class="btn btn-default add-to-cart" data-id="<?=$product->id?>"><i class="fa fa-shopping-cart"></i>Add to cart</button>
                         </div>
                     </div>
                 </div>

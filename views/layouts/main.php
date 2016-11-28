@@ -96,7 +96,7 @@ ltAppAsset::register($this);
                             <li><a href="#"><i class="fa fa-user"></i> Account</a></li>
                             <li><a href="#"><i class="fa fa-star"></i> Wishlist</a></li>
                             <li><a href="checkout.html"><i class="fa fa-crosshairs"></i> Checkout</a></li>
-                            <li><a onclick="getCart();"><i class="fa fa-shopping-cart"></i> Cart</a></li>
+                            <li><a onclick="getCart();" href="#"><i class="fa fa-shopping-cart"></i> Cart</a></li>
                             <li><a href="login.html"><i class="fa fa-lock"></i> Login</a></li>
                         </ul>
                     </div>
@@ -125,7 +125,7 @@ ltAppAsset::register($this);
                                     <li><a href="shop.html">Products</a></li>
                                     <li><a href="product-details.html">Product Details</a></li>
                                     <li><a href="checkout.html">Checkout</a></li>
-                                    <li><a href="cart.html">Cart</a></li>
+                                    <li><a href="#" onclick="getCart();">Cart</a></li>
                                     <li><a href="login.html">Login</a></li>
                                 </ul>
                             </li>
@@ -320,7 +320,7 @@ ltAppAsset::register($this);
     'header' =>  '<h4>Корзина</h4>',
     'footer' => '<button type="button" class="btn btn-default" data-dismiss="modal">Продолжить покупки</button>
                  <button type="button" class="btn btn-danger" onclick="clearCart()">Очистить корзину</button>
-                 <button type="button" class="btn btn-success">Оформить заказ</button>',
+                 <a class="btn btn-success" href="'. Url::to(['cart/view']) . '">Оформить заказ</a>',
 ]);
 
 \yii\bootstrap\Modal::end();

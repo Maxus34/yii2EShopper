@@ -15,6 +15,9 @@ class Cart extends Model
     public function addToCart($product, $qty = 1)
     {
         if (isset($_SESSION['cart'][$product->id])) {
+            if ($qty < 0 && $_SESSION['cart'][$product->id]['qty'] < 1){
+                return 0;
+            }
             $_SESSION['cart'][$product->id]['qty'] += $qty;
 
         } else {

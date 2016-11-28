@@ -16,23 +16,29 @@ function clearCart(){
 }
 
 function getCart(){
+    e.preventDefault();
     $.ajax({
         url: '/cart/',
         type: 'GET',
         success: function(res){
             if(!res) alert("Error clear-cart");
             showCart(res);
+
         }
     });
-    return false;
 }
 
 $('.add-to-cart').on('click', function(e){
     e.preventDefault();
-    var id = $(this).data('id');
+    let id = $(this).data('id'),
+        qty = $('#qty').val();
+
     $.ajax({
         url : '/cart/add',
-        data : {id: id},
+        data : {
+            id: id,
+            qty: qty,
+        },
         type : 'GET',
         success : function (res) {
             if (!res) alert ('Error!');
@@ -44,7 +50,8 @@ $('.add-to-cart').on('click', function(e){
     })
 });
 
-$('#cart .modal-body').on('click', '.del-item', function() {
+function del_item_handler(e) {
+    e.preventDefault();
     let id = $(this).data('id');
     $.ajax({
         url: '/cart/del-item',
@@ -56,15 +63,42 @@ $('#cart .modal-body').on('click', '.del-item', function() {
         error: function (e) {
             alert ('error del-item' + e);
         }
-
     })
-});
+}
+$('#cart .del-item').on('click',  del_item_handler );
+$('#cart .modal-body').on('click', '.del-item', del_item_handler );
+
+
+function change_count_handler (e) {
+    e.preventDefault();
+    let id = $(this).data('id');
+    let qty = $(this).data('value');
+    $.ajax({
+        url: '/cart/add',
+        data: {
+            id: id,
+            qty: qty,
+        },
+        type: 'GET',
+        success: function (res) {
+            showCart(res);
+        },
+        error: function (e) {
+            alert ('error change-count' + e);
+        }
+    })
+}
+$('#cart .change-count').on('click', change_count_handler );
+$('#cart .modal-body').on('click', '.change-count', change_count_handler );
 
 //Создание выпадающего меню
 $('#catalog').dcAccordion({
     'speed' : 200,
 });
 
+
+
+//Было изначально
 //--------------------------------------------
 $('#sl2').slider();
 
