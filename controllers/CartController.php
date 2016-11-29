@@ -17,13 +17,16 @@ use Yii;
 
 class CartController extends AppController
 {
-    private $session;
+    protected $session;
+    protected $cart;
 
     public function beforeAction($action)
     {
         if (Yii::$app->request->isAjax){
             $this->layout = false;
         }
+
+        $this->cart = new Cart();
         $this->view->title = "ESHOPPER | Корзина";
         $this->session = Yii::$app->session;
 
@@ -59,8 +62,8 @@ class CartController extends AppController
     }
 
     public function actionClear(){
-        $cart = new Cart();
-        $cart->clearCart();
+
+        $this->cart->clearCart();
 
         return $this->render('cart-modal', [
             'session' => $this->session,
@@ -68,8 +71,8 @@ class CartController extends AppController
     }
 
     public function actionDelItem($id){
-        $cart = new Cart();
-        $cart->deleteItemAndUpdateCart($id);
+
+        $this->cart->deleteItemAndUpdateCart($id);
 
         return $this->render('cart-modal', [
             'session' => $this->session,
@@ -84,9 +87,15 @@ class CartController extends AppController
            $order->qty = $this->session['cart.qty'];
            $order->sum = $this->session['cart.sum'];
             if($order->save()){
+
+                Yii::$app->mailer->compose('order', ['session'=>$this->session])
+                    ->setFrom(['maksproshkin@gmail.com' => "ESHOPPER"])
+                    ->setTo("maks_proshkin@mail.ru")
+                    ->setSubject('Заказ')
+                    ->send();
+
                 $this->saveOrderItems($this->session['cart'], $order->id);
-                $cart = new Cart();
-                $cart->clearCart();
+                $this->cart->clearCart();
 
                 Yii::$app->session->setFlash('success', 'Ваш заказ принят');
                 return $this->refresh();
