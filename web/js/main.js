@@ -1,7 +1,7 @@
 //Корзина
 function showCart(cart){
-    $('#cart .modal-body').html(cart);
-    $('#cart').modal();
+    $('#cart-modal .modal-body').html(cart);
+    $('#cart-modal').modal();
 }
 
 function clearCart(){
@@ -15,7 +15,7 @@ function clearCart(){
     })
 }
 
-function getCart(){
+$('#cart-view').on('click',function(e) {
     e.preventDefault();
     $.ajax({
         url: '/cart/',
@@ -26,13 +26,13 @@ function getCart(){
 
         }
     });
-}
+});
 
-$('.add-to-cart').on('click', function(e){
+
+$('.add-to-cart').on('click', function(e) {
     e.preventDefault();
     let id = $(this).data('id'),
         qty = $('#qty').val();
-
     $.ajax({
         url : '/cart/add',
         data : {
@@ -42,6 +42,7 @@ $('.add-to-cart').on('click', function(e){
         type : 'GET',
         success : function (res) {
             if (!res) alert ('Error!');
+            //$.stickr({note:'Это ошибка.<br />Чтобы привлечь ваше внимание, она будет оставаться на месте до тех пор, пока вы не закроете её',className:'classic error',sticked:true});
             showCart(res);
         },
         error : function () {
@@ -61,12 +62,12 @@ function del_item_handler(e) {
             showCart(res);
         },
         error: function (e) {
-            alert ('error del-item' + e);
+            alert ('error del-item' + e.message);
         }
     })
 }
 $('#cart .del-item').on('click',  del_item_handler );
-$('#cart .modal-body').on('click', '.del-item', del_item_handler );
+$('#cart-modal .modal-body').on('click', '.del-item', del_item_handler );
 
 
 function change_count_handler (e) {
@@ -89,7 +90,7 @@ function change_count_handler (e) {
     })
 }
 $('#cart .change-count').on('click', change_count_handler );
-$('#cart .modal-body').on('click', '.change-count', change_count_handler );
+$('#cart-modal .modal-body').on('click', '.change-count', change_count_handler );
 
 //Создание выпадающего меню
 $('#catalog').dcAccordion({

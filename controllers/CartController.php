@@ -10,6 +10,8 @@ namespace app\controllers;
 
 use app\models\Product;
 use app\models\Category;
+use app\models\Order;
+use app\models\OrderItems;
 use app\models\Cart;
 use Yii;
 
@@ -35,7 +37,7 @@ class CartController extends AppController
     }
 
     public function actionIndex(){
-        return $this->render('cart-model', [
+        return $this->render('cart-modal', [
             'session' => $this->session,
         ]);
     }
@@ -50,7 +52,7 @@ class CartController extends AppController
         $cart = new Cart();
         $cart->addToCart($product, $qty);
 
-        return $this->render('cart-model', [
+        return $this->render('cart-modal', [
             'session' => $this->session,
         ]);
     }
@@ -60,7 +62,7 @@ class CartController extends AppController
         $this->session->remove('cart');
         $this->session->remove('cart.qty');
         $this->session->remove('cart.sum');
-        return $this->render('cart-model', [
+        return $this->render('cart-modal', [
             'session' => $this->session,
         ]);
     }
@@ -69,12 +71,22 @@ class CartController extends AppController
         $cart = new Cart();
         $cart->deleteItemAndUpdateCart($id);
 
-        return $this->render('cart-model', [
+        return $this->render('cart-modal', [
             'session' => $this->session,
         ]);
     }
 
     public function actionView(){
-        return $this->render('cart-model', ['session' => $this->session]);
+        $this->view->title = "ESHOPPER | Оформление заказа";
+
+        $order = new Order();
+        if ($order->load(Yii::$app->request->post())){
+            debug($order);
+            die;
+        }
+        return $this->render('cart-view', [
+            'session' => $this->session,
+            'order' => $order,
+        ]);
     }
 }
