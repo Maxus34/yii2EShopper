@@ -5,6 +5,18 @@
 ?>
 
 <div id="cart" class="container">
+    <?php if($session->hasFlash('success')): ?>
+        <div class="alert alert-success alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <?php echo $session->getFlash('success'); ?>
+        </div>
+    <?php endif; ?>
+    <?php if($session->hasFlash('error')): ?>
+        <div class="alert alert-danger alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <?php echo $session->getFlash('error'); ?>
+        </div>
+    <?php endif; ?>
     <h2 class="title text-center">Ваша корзина</h2>
     <section id="cart_items">
         <?php if(!empty($session['cart'])): ?>
@@ -63,16 +75,26 @@
 
             <!-- Форма заказа   -->
             <hr>
-            <div class="col-sm-6 col-sm-offset-3">
-                <?php $form = ActiveForm::begin() ?>
-                <?= $form->field($order, 'name') ?>
-                <?= $form->field($order, 'email') ?>
-                <?= $form->field($order, 'phone') ?>
-                <?= $form->field($order, 'address') ?>
-                <?= Html::submitButton('Заказать', ['class' => 'btn btn-success']) ?>
-                <?= Html::resetButton('Сбросить', ['class' => 'btn btn-danger']) ?>
-                <?php ActiveForm::end() ?>
+
+
+            <div class="col-md-6 col-md-offset-3">
+                <div class="contact-form">
+                    <h2 class="title text-center">Форма заказа</h2>
+                    <?php $form = ActiveForm::begin([
+                        'id' => 'order-form',
+                        'options' => ['class' => 'contact-form row']
+                        ]);
+                    ?>
+                    <?= $form->field($order, 'name') ?>
+                    <?= $form->field($order, 'email') ?>
+                    <?= $form->field($order, 'phone') ?>
+                    <?= $form->field($order, 'address') ?>
+                    <?= Html::submitButton('Заказать', ['class' => 'btn btn-success']) ?>
+                    <?= Html::resetButton('Сбросить', ['class' => 'btn btn-danger']) ?>
+                    <?php ActiveForm::end() ?>
+                </div>
             </div>
+
         <?php else: ?>
             <h4 class="text-center text-success">Корзина пуста</h4>
         <?php endif; ?>

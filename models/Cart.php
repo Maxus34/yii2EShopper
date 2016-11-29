@@ -15,7 +15,7 @@ class Cart extends Model
     public function addToCart($product, $qty = 1)
     {
         if (isset($_SESSION['cart'][$product->id])) {
-            if ($qty < 0 && $_SESSION['cart'][$product->id]['qty'] < 1){
+            if ($qty < 0 && $_SESSION['cart'][$product->id]['qty'] < 2){
                 return 0;
             }
             $_SESSION['cart'][$product->id]['qty'] += $qty;
@@ -34,9 +34,14 @@ class Cart extends Model
 
     public function deleteItemAndUpdateCart($id){
         if (!isset($_SESSION['cart'][$id])) return false;
-
         $_SESSION['cart.qty'] -=  $_SESSION['cart'][$id]['qty'];
         $_SESSION['cart.sum'] -= ($_SESSION['cart'][$id]['qty'] * $_SESSION['cart'][$id]['price']);
         unset($_SESSION['cart'][$id]);
+    }
+
+    public function clearCart(){
+        unset($_SESSION['cart']);
+        unset($_SESSION['cart.qty']);
+        unset($_SESSION['cart.sum']);
     }
 }
