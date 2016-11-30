@@ -935,7 +935,7 @@ h2.title {
   color: #FE980F;
   font-family: 'Roboto', sans-serif;
   font-size: 15px;
-  margin-bottom: 25px;
+  margin-bottom: 5px;
 }
 
 .product-overlay .add-to-cart:hover {
@@ -960,7 +960,7 @@ h2.title {
   color: #696763;
   font-family: 'Roboto', sans-serif;
   font-size: 15px;
-  margin-bottom: 25px;
+  margin-bottom: 5px;
 }
 
 .add-to-cart:hover {
@@ -1185,8 +1185,8 @@ h2.title {
 
 .view-product .product-img {
   border: 1px solid #F7F7F0;
-  height: 380px;
   width: 100%;
+  height: 100%;
 }
 
 .view-product h3 {
@@ -1300,7 +1300,7 @@ h2.title {
   color: #FFFFFF;
   font-family: 'Roboto', sans-serif;
   font-size: 15px;
-  margin-left: 20px;
+  margin-left: 5px;
 }
 
 td.cart-product img{

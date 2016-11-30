@@ -8,6 +8,12 @@ $config = [
     'bootstrap' => ['log'],
     'language' => 'ru-Ru',
     'defaultRoute' => 'category/index',
+    'modules' => [
+        'admin' => [
+            'class' => 'app\modules\admin\Module',
+            'layout' => 'admin',
+        ],
+    ],
 	'components' => [
         'request' => [
 			'baseUrl' => '',
