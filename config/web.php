@@ -25,6 +25,7 @@ $config = [
         ],
         'user' => [
             'identityClass' => 'app\models\User',
+            //'loginUrl' => 'cart',
             'enableAutoLogin' => true,
         ],
         'errorHandler' => [
