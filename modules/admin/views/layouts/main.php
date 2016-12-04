@@ -1,5 +1,4 @@
 <?php
-
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\bootstrap\Nav;
@@ -10,9 +9,7 @@ use app\assets\ltAppAsset;
 
 AppAsset::register($this);
 ltAppAsset::register($this);
-$this->title = "ESOPPER | Admin ";
 ?>
-
 <?php $this->beginPage() ?>
     <!DOCTYPE html>
     <html lang="<?= Yii::$app->language ?>">
@@ -96,12 +93,13 @@ $this->title = "ESOPPER | Admin ";
                         <div class="shop-menu pull-right">
                             <ul class="nav navbar-nav">
                                 <li><a href="#"><i class="fa fa-star"></i> Wishlist</a></li>
-                                <li><a href="checkout.html"><i class="fa fa-crosshairs"></i> Checkout</a></li>
+
                                 <li><a id="cart-view" href="<?=Url::to(['cart/view']); ?>"><i class="fa fa-shopping-cart"></i> Cart</a></li>
                                 <?php if(!Yii::$app->user->isGuest): ?>
                                     <li><a href="<?=Url::to(['/site/logout']);?>"><i class="fa fa-user"></i><?=Yii::$app->user->identity['username']?>(logout)</a></li>
+                                    <li><a href="<?=Url::to(['/admin']); ?>"><i class="fa fa-cog"></i>Admin-panel</a></li>
                                 <?php else: ?>
-                                    <li><a href="<?=Url::to(['/admin']) ?>"><i class="fa fa-lock"></i> Login</a></li>
+                                    <li><a href="<?=Url::to(['/site/login']) ?>"><i class="fa fa-lock"></i> Login</a></li>
                                 <?php endif; ?>
                             </ul>
                         </div>
@@ -157,7 +155,10 @@ $this->title = "ESOPPER | Admin ";
         </div><!--/header-bottom-->
     </header><!--/header-->
 
-    <?= $content; ?>
+    <div class="container">
+        <?= $content; ?>
+    </div>
+
 
     <footer id="footer"><!--Footer-->
         <div class="footer-top">

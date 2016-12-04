@@ -11,7 +11,7 @@ $this->title = 'Login';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="container">
-    <div class="col-sm-8 ">
+    <div class="col-xs-offset-3 col-xs-7 col-lg-7">
         <h1><?= Html::encode($this->title) ?></h1>
 
         <p>Please fill out the following fields to login:</p>

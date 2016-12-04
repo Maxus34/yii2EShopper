@@ -11,7 +11,9 @@ $config = [
     'modules' => [
         'admin' => [
             'class' => 'app\modules\admin\Module',
-            'layout' => 'admin',
+            'layout' => 'main',
+            'defaultRoute' => '/order/',
+
         ],
     ],
 	'components' => [
@@ -59,11 +61,15 @@ $config = [
             'rules' => [
                 'product/<id:\d+>' => 'product/view',
 
-                'category/<id:\d+>/page/<page:\d+>' => 'category/view',
+                'category/<id:\d+>/p/<page:\d+>' => 'category/view',
                 'category/<id:\d+>' => 'category/view',
 
                 'search/page/<page:\d+>' => 'category/search',
                 'search' => 'category/search',
+                'login' => 'site/login',
+                
+                'admin/order/p/<page:\d+>' => 'admin/order/index',
+                'admin/order' => 'admin/order/index',
             ],
         ],
     ],
