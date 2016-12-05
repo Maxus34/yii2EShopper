@@ -67,7 +67,7 @@ $config = [
                 'search/page/<page:\d+>' => 'category/search',
                 'search' => 'category/search',
                 'login' => 'site/login',
-                
+
                 'admin/order/p/<page:\d+>' => 'admin/order/index',
                 'admin/order' => 'admin/order/index',
             ],
