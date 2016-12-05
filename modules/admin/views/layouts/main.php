@@ -1,11 +1,8 @@
 <?php
-use yii\helpers\Html;
-use yii\helpers\Url;
-use yii\bootstrap\Nav;
-use yii\bootstrap\NavBar;
+use yii\helpers\{Html,Url};
+use yii\bootstrap\{Nav, NavBar} ;
 use yii\widgets\Breadcrumbs;
-use app\assets\  AppAsset;
-use app\assets\ltAppAsset;
+use app\assets\{ AppAsset, ltAppAsset };
 
 AppAsset::register($this);
 ltAppAsset::register($this);
@@ -125,8 +122,8 @@ ltAppAsset::register($this);
                                 <li><a href="index.html" class="active">Home</a></li>
                                 <li class="dropdown"><a href="#">Категории<i class="fa fa-angle-down"></i></a>
                                     <ul role="menu" class="sub-menu">
-                                        <li><a href="#">Список категорий</a></li>
-                                        <li><a href="#">Добавить категорию</a></li>
+                                        <li><a href="<?=Url::to(['/admin/category/index']) ?>">Список категорий</a></li>
+                                        <li><a href="<?=Url::to(['/admin/category/create']) ?>">Добавить категорию</a></li>
                                     </ul>
                                 </li>
                                 <li class="dropdown"><a href="#">Товары<i class="fa fa-angle-down"></i></a>
@@ -152,6 +149,20 @@ ltAppAsset::register($this);
     </header><!--/header-->
 
     <div class="container">
+
+        <?php if(Yii::$app->session->hasFlash('success')): ?>
+            <div class="alert alert-success alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <?php echo Yii::$app->session->getFlash('success'); ?>
+            </div>
+        <?php endif; ?>
+        <?php if(Yii::$app->session->hasFlash('error')): ?>
+            <div class="alert alert-danger alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <?php echo Yii::$app->session->getFlash('error'); ?>
+            </div>
+        <?php endif; ?>
+        
         <?= $content; ?>
     </div>
 

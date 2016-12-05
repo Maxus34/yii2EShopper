@@ -1,7 +1,11 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: MXS34
- * Date: 22.11.2016
- * Time: 14:48
- */
+<option
+    value="<?=$category['id']?>"
+    <?php if($category['id'] == $this->model->parent_id) echo 'selected'; ?>
+    <?php if($category['id'] == $this->model->id) echo 'disabled'; ?> >
+    <?=$tab . $category['name']?>
+</option>
+
+<?php if(isset($category['childs'])): ?>
+    <?= $this->getMenuHtml($category['childs'], $tab . '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'); ?>
+<?php endif; ?>
+
