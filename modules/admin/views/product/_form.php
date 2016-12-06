@@ -2,6 +2,10 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use mihaildev\elfinder\ElFinder;
+use mihaildev\ckeditor\CKEditor;
+
+\mihaildev\elfinder\Assets::noConflict($this);
 
 /* @var $this yii\web\View */
 /* @var $model app\modules\admin\models\Product */
@@ -22,7 +26,17 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'content')->textarea(['rows' => 6]) ?>
+    <?php
+       /* echo $form->field($model, 'content')->widget(\mihaildev\ckeditor\CKEditor::className(),[
+            'editorOptions' => [
+                'preset' => 'full',
+                'inline' => false,
+            ]
+        ])*/
+        echo $form->field($model, 'content')->widget(CKEditor::className(), [
+             'editorOptions' => ElFinder::ckeditorOptions('elfinder',[]),
+        ]);
+    ?>
 
     <?= $form->field($model, 'price')->textInput() ?>
 
@@ -32,11 +46,11 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'img')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'hit')->dropDownList([ '0', '1', ], ['prompt' => '']) ?>
+    <?= $form->field($model, 'hit')->checkbox([ '0', '1', ], ['prompt' => '']) ?>
 
-    <?= $form->field($model, 'new')->dropDownList([ '0', '1', ], ['prompt' => '']) ?>
+    <?= $form->field($model, 'new')->checkbox([ '0', '1', ], ['prompt' => '']) ?>
 
-    <?= $form->field($model, 'sale')->dropDownList([ '0', '1', ], ['prompt' => '']) ?>
+    <?= $form->field($model, 'sale')->checkbox([ '0', '1', ], ['prompt' => '']) ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

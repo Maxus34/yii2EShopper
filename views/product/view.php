@@ -121,6 +121,12 @@ use yii\helpers\Url;
                             <a href=""><img src="/images/product-details/share.png" class="share img-responsive"  alt="" /></a>
                         </div><!--/product-information-->
                     </div>
+                    <div class="row">
+                        <div class="span6 clearfix">
+                            <?=$product->content ?>
+                        </div>
+                    </div>
+
                 </div><!--/product-details-->
 
                 <div class="recommended_items"><!--recommended_items-->
