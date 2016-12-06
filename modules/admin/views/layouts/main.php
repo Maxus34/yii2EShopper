@@ -128,8 +128,8 @@ ltAppAsset::register($this);
                                 </li>
                                 <li class="dropdown"><a href="#">Товары<i class="fa fa-angle-down"></i></a>
                                     <ul role="menu" class="sub-menu">
-                                        <li><a href="#">Список товаров</a></li>
-                                        <li><a href="#">Добавить товар</a></li>
+                                        <li><a href="<?=Url::to(['/admin/product/index']) ?>">Список товаров</a></li>
+                                        <li><a href="<?=Url::to(['/admin/product/create']) ?>">Добавить товар</a></li>
                                     </ul>
                                 </li>
                                 <li><a href="<?=Url::to('/admin/order') ?>">Заказы</a></li>
