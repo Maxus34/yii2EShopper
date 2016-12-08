@@ -2,11 +2,11 @@
 
 namespace app\modules\admin\controllers;
 
+//use GuzzleHttp\Psr7\UploadedFile;
 use Yii;
 use app\modules\admin\models\Product;
 use yii\data\ActiveDataProvider;
-use yii\web\Controller;
-use yii\web\NotFoundHttpException;
+use yii\web\{ Controller, NotFoundHttpException, UploadedFile};
 use yii\filters\VerbFilter;
 
 
@@ -66,6 +66,11 @@ class ProductController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+
+            $model -> image = UploadedFile::getInstance($model, 'image');
+            if (!$model->image->error){
+                debug($model->upload());
+            }
             Yii::$app->session->setFlash('success', "Товар <b>\"{$model->name}\"</b> успешно обновлен");
             return $this->redirect(['view', 'id' => $model->id]);
         } else {

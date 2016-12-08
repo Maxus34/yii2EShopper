@@ -12,8 +12,14 @@ $config = [
         'admin' => [
             'class' => 'app\modules\admin\Module',
             'layout' => 'main',
-            'defaultRoute' => '/order/',
-
+            'defaultRoute' => '/order',
+        ],
+        'yii2images' => [
+            'class' => 'rico\yii2images\Module',
+            'imagesStorePath' => 'upload/store', //path to origin images
+            'imagesCachePath' => 'upload/cache', //path to resized copies
+            'graphicsLibrary' => 'GD', //but really its better to use 'Imagick'
+            'placeHolderPath' => 'upload/store/no-image.png', // if you want to get placeholder when image not exists, string will be processed by Yii::getAlias
         ],
     ],
 	'components' => [

@@ -14,7 +14,7 @@ use mihaildev\ckeditor\CKEditor;
 
 <div class="product-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
 
     <div class="form-group field-product-category_id">
         <label class="control-label" for="product-category_id">Kатегория</label>
@@ -27,12 +27,6 @@ use mihaildev\ckeditor\CKEditor;
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
     <?php
-       /* echo $form->field($model, 'content')->widget(\mihaildev\ckeditor\CKEditor::className(),[
-            'editorOptions' => [
-                'preset' => 'full',
-                'inline' => false,
-            ]
-        ])*/
         echo $form->field($model, 'content')->widget(CKEditor::className(), [
              'editorOptions' => ElFinder::ckeditorOptions('elfinder',[]),
         ]);
@@ -44,13 +38,13 @@ use mihaildev\ckeditor\CKEditor;
 
     <?= $form->field($model, 'description')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'img')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'image')->fileInput() ?>
 
-    <?= $form->field($model, 'hit')->checkbox([ '0', '1', ], ['prompt' => '']) ?>
+    <?= $form->field($model, 'hit')->checkbox([ '0', '1', ]) ?>
 
-    <?= $form->field($model, 'new')->checkbox([ '0', '1', ], ['prompt' => '']) ?>
+    <?= $form->field($model, 'new')->checkbox([ '0', '1', ]) ?>
 
-    <?= $form->field($model, 'sale')->checkbox([ '0', '1', ], ['prompt' => '']) ?>
+    <?= $form->field($model, 'sale')->checkbox([ '0', '1', ]) ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
