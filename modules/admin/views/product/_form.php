@@ -39,6 +39,7 @@ use mihaildev\ckeditor\CKEditor;
     <?= $form->field($model, 'description')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'image')->fileInput() ?>
+    <?= $form->field($model, 'gallery[]')->fileInput(['multiple' => true, 'accept' => 'image/*']) ?>
 
     <?= $form->field($model, 'hit')->checkbox([ '0', '1', ]) ?>
 
